@@ -1,0 +1,69 @@
+/* aqui le vas dar un color de fondo y un color al borde*/ 
+:root{     
+  --background: rgb(0, 0, 0);     
+  --dark: rgb(241, 234, 234); 
+}  
+
+/*estilo para toda la pagina*/ 
+*{     
+  padding: 0;     
+  margin: 0;     
+  box-sizing: border-box; /*calcula las medidas del elemento*/ 
+}  
+
+body{
+  background: var(--background); /*fondo negro para toda la pagina*/
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/*corregido: antes decía .contendor, ahora .contenedor*/
+.contenedor{     
+  background: var(--background); /* te crea una variable para el color de fondo que toma el color del :root que declaraste al principio,     
+  si quieres cambiar el color de muchos lugares solo es necesario cambiarlo en el root*/     
+  min-height: 100vh;     
+  display: flex;     
+  align-items: center;     
+  justify-content: center; 
+}  
+
+.box-liquid{     
+  position: relative;     
+  background: var(--background);     
+  border: 0.25rem solid var(--dark); /*esta variable toma el color que hayas declarado en el root de la variable --dark*/     
+  width: 20rem;     
+  height: 30rem;     
+  outline: 0;     
+  overflow: hidden; 
+}  
+
+.box-liquid::before{     
+  content: url("img/img.gif"); /*se agregan comillas para evitar errores de ruta*/
+  position: absolute; /*se cambia a absolute para poder centrar el gif*/
+  top: 50%;     
+  left: 50%;     
+  transform: translate(-50%, -50%); /*centra el gif en el medio del contenedor*/
+}  
+
+.box-liquid::after{     
+  content: "";     
+  position: absolute;     
+  background: var(--background);     
+  height: 200%;     
+  width: 200%;     
+  bottom: -50%;     
+  left: -50%;     
+  border-radius: 40%;     
+  animation: spin 10s ease-out infinite; 
+}  
+
+/*keyframes define los pasos que seguira un elemento durante la animacion en este caso en el plano cartesiano se movera en sentido de las Y*/ 
+@keyframes spin{     
+  0%{         
+      transform: translateY(0) rotate(0deg);     
+  }     
+  100%{         
+      transform: translateY(-100%) rotate(-500deg);     
+  } 
+}
+  
